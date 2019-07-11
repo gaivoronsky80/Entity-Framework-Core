@@ -1,0 +1,62 @@
+ @using EventPlanner.Models
+ @model Event
+
+<div class="wrapper">
+    <div class="title">
+        <h1>Welcome, @ViewBag.ThisUser.FirstName @ViewBag.ThisUser.LastName</h1>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="contant">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                <th scope="col">Event</th>
+                <th scope="col">Date & Time</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Event Coordinator</th>
+                <th scope="col"># of Joins</th>
+                <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Event e in ViewBag.AllEvents)
+                {
+                    <tr>
+                        <td><a href="/info/@e.EventId">@e.Title</a></td>
+                        <td>@e.Date.ToString("d") at @e.Time</td>
+                        <td>@e.Duration @e.DurationType</td>
+                        <td>@e.Creator.FirstName @e.Creator.LastName</td>
+                        <td>@e.Joins.Count</td>
+                        <td>@{
+                            bool isTrue = false;
+                            int JoinId = 0;
+                                @foreach (var j in e.Joins)
+                                {
+                                    if(j.UserId == @ViewBag.ThisUser.UserId)
+                                    {
+                                        JoinId = j.UserId;
+                                        isTrue = true;
+                                    }
+                                }
+                                if (isTrue)
+                                {
+                                    <a asp-action="UnJoin" asp-controller="Home" asp-route-eventId="@e.EventId">UnJoin</a>
+                                }
+                                else{
+                                    if(@e.UserId == @ViewBag.ThisUser.UserId)
+                                    {
+                                        <a asp-action="Delete" asp-controller="Home" asp-route-eventId="@e.EventId">Cancel</a>
+                                    }
+                                    else{
+                                        <a asp-action="Join" asp-controller="Home" asp-route-eventId="@e.EventId">Join</a>
+                                    }
+                                }
+                            }
+                        </td>
+                    </tr> 
+                }
+            </tbody>
+        </table>
+        <button><a href="/create" class="btn btn-outline-dark">New Event</a></button>
+    </div>
+</div>

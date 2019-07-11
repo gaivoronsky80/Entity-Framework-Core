@@ -1,0 +1,26 @@
+@using ChefsNDishes.Models
+@model Chef
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="wrapper">
+    <div class="title">
+        <h1>Add a Chef!</h1>
+        <a href="/">Home</a>
+    </div>
+    <div class="context" style="width: 400px">
+        <form asp-action="CreateChef" asp-controller="Home" method="post">
+            <div class="context-left form-group">
+                <span asp-validation-for="FirstName" class="form-text text-muted"></span>
+                <p>First Name: <input asp-for="FirstName" class="form-control"></p>
+                <span asp-validation-for="LastName" class="form-text text-muted"></span>
+                <p>Last Name: <input asp-for="LastName" class="form-control"></p>
+                <span asp-validation-for="DateOfBirth" class="form-text text-muted"></span>
+                <p>Date of Birth: <input type="date" asp-for="DateOfBirth" class="form-control"></p>
+            </div>
+            <div class="context-bottom form-group">
+                <button type="submit" class="btn btn-outline-dark">Add Chef</button>
+            </div>
+        </form>
+    </div>
+</div>
+

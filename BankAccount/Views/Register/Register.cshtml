@@ -1,0 +1,30 @@
+@using BankAccount.Models
+@model User
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="wrapper">
+    <div class="title">
+        <h1>Register</h1>
+    </div>
+    <div class="context" style="width: 400px">
+        <form asp-action="Create" asp-controller="Register" method="post">
+            <div class="context-left form-group">
+                <span asp-validation-for="FirstName" class="form-text text-muted"></span>
+                <p asp-for="FirstName">First Name: <input asp-for="FirstName" class="form-control"></p>
+                <span asp-validation-for="LastName" class="form-text text-muted"></span>
+                <p asp-for="LastName">Last Name: <input asp-for="LastName" class="form-control"></p>
+                <span asp-validation-for="Email" class="form-text text-muted"></span>
+                <p asp-for="Email">Email: <input asp-for="Email" class="form-control"></p>
+                <span asp-validation-for="Password" class="form-text text-muted"></span>
+                <p asp-for="Password">Password: <input asp-for="Password" class="form-control"></p>
+                <span asp-validation-for="Confirm" class="form-text text-muted"></span>
+                <p asp-for="Confirm">Confirm Password: <input asp-for="Confirm" class="form-control"></p>
+            </div>
+            <div class="context-bottom form-group">
+                <button type="submit" class="btn btn-outline-dark">Submit</button>
+                <a href="/login">Already Registered?</a>
+            </div>
+        </form>
+    </div>
+</div>
+

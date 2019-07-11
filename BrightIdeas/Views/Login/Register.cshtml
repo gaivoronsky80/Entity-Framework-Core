@@ -1,0 +1,36 @@
+@using BrightIdeas.Models
+@model User
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<h1>Welcome!</h1>
+<hr>
+<h1>Register | <a href="/login">Login</a></h1>
+<form asp-action="Register" asp-controller="Login" method="post" class="form-group">
+<label>
+    Name:
+    <input asp-for="Name">
+    <span asp-validation-for="Name"></span>
+</label>
+<label>
+    Alias:
+    <input asp-for="Alias">
+    <span asp-validation-for="Alias"></span>
+</label>
+<label>
+    Email:
+    <input asp-for="Email">
+    <span asp-validation-for="Email"></span>
+</label>
+<label>
+    Password:
+    <input asp-for="Password">
+    <span asp-validation-for="Password"></span>
+</label>
+<label>
+    Confirm Password:
+    <input asp-for="Confirm">
+    <span asp-validation-for="Confirm"></span>
+</label>
+<button class="btn btn-outline-dark">Register</button>
+</form>

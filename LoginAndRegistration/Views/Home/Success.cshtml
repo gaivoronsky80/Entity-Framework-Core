@@ -1,0 +1,17 @@
+@using LoginAndRegistration.Models
+@model List<User>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="wrapper">
+    <div class="title">
+        <a href="/">Logout</a>
+    </div>
+    <div class="context"  style="width: 400px">
+        <h1 class="green" style="color: green">S U C C E S S</h1>
+        @foreach(User user in Model)
+        {
+            <p>@user.FirstName @user.LastName @user.Email @user.Password</p>
+            <a href="delete/@user.UserId"><button type="submit" class="btn btn-outline-dark">Delete</button></a>
+        }
+    </div>
+</div>

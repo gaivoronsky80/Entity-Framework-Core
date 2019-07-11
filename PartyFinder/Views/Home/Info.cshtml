@@ -1,0 +1,51 @@
+ @using PartyFinder.Models
+ @model Party
+
+<link href="/css/site.css"/>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<nav>
+    <div><a href="/">Home</a></div>
+</nav>
+<h2>@ViewBag.ThisParty.Title</h2>
+<img src="@ViewBag.ThisParty.Img" class="image-form" style="width: 300px">
+<p>Date & Time: @ViewBag.ThisParty.Date.ToString("d") @ViewBag.ThisParty.Time</p>
+
+<p>Event Coordinator: @ViewBag.ThisParty.Creator.FirstName @ViewBag.ThisParty.Creator.LastName</p>
+<p>Description: @ViewBag.ThisParty.Description</p>
+<p>Location: @ViewBag.ThisParty.Location</p>
+
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=@ViewBag.ThisParty.Location&zoom=13&size=480x480&markers=@ViewBag.ThisParty.Location&key=AIzaSyBxkD8afHOPA6xBHwFSaOZk54ePi6V9OYM" alt="Google Map of @ViewBag.ThisParty.Location" style="width: 300px">
+
+<p>Joins:</p>
+<ul>
+    @foreach(Join i in @ViewBag.ThisParty.Joins)
+    {
+        <li>@i.User.FirstName @i.User.LastName</li>
+    }
+</ul>
+
+@{
+    bool isTrue = false;
+    @foreach(var k in @ViewBag.ThisParty.Joins)
+    {
+        if(k.UserId == @ViewBag.ThisUser.UserId)
+        {
+            isTrue = true;
+        }
+    }
+    if (isTrue)
+    {
+        <button><a asp-action="UnJoin" asp-controller="Home" asp-route-partyId="@ViewBag.ThisParty.PartyId">UnJoin</a></button>  
+    }
+    else {
+        if (@ViewBag.ThisParty.UserId ==  @ViewBag.ThisUser.UserId)
+        {
+            <a asp-action="Delete" asp-controller="Home" asp-route-partyId="@ViewBag.ThisParty.PartyId">Cancel</a>
+        } 
+        else {
+            <button><a asp-action="Join" asp-controller="Home" asp-route-partyId="@ViewBag.ThisParty.PartyId">Join</a></button>
+            
+        }
+    }
+}

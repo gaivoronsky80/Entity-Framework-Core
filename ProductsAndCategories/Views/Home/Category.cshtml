@@ -1,0 +1,31 @@
+@using ProductsAndCategories.Models
+@model Add
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="wrapper" style="width: 400px">
+    <h1>@ViewBag.thisCategory.Name <a href="/categories" class="btn btn-primary">All Categories</a></h1>
+    <div>
+        <h2>Products:</h2>
+        <ul>
+            @foreach (var i in @ViewBag.thisCategory.Products)
+            {
+                <li>@i.Product.Name</li>
+            }
+        </ul>
+    </div>
+    <div>
+        <p>Add Product:</p>
+        <form asp-action="AddCategory" asp-controller="Home" asp-route-cId="@ViewBag.thisCategory.CategoryId" method="post">
+            <div class="form-group">
+                <select asp-for="FindId" class="form-control">
+                    @foreach (Product i in @ViewBag.MyProducts)
+                    {
+                        <option value="@i.ProductId">@i.Name</option>
+                    }
+                </select>
+            </div>
+            <input type="submit" value="Add" class="btn btn-success">
+        </form>
+    </div>
+</div>

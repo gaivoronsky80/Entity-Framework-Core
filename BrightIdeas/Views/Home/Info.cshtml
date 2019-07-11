@@ -1,0 +1,10 @@
+@using BrightIdeas.Models
+@model User
+
+<nav>
+    <div><a href="/bright_ideas">Bright Ideas</a></div>
+    <div><a href="/logout">Logout</a></div>
+</nav>
+<p>Name: @ViewBag.ThisUser.Name</p>
+<p>Alias: @ViewBag.ThisUser.Alias</p>
+<p>Email: @ViewBag.ThisUser.Email</p>

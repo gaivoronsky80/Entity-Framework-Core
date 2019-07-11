@@ -1,0 +1,39 @@
+﻿@using BankAccount.Models
+@model Transaction
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="wrapper">
+    <div class="title">
+        <a href="/logout">Logout</a>
+        <h1>Welcome, @ViewBag.UserInfo.FirstName @ViewBag.UserInfo.LastName</h1>
+        <p>Current balance: $@ViewBag.Total</p>
+    </div>
+    <div class="context" style="width: 400px">
+        <form asp-action="Money" asp-controller="Account" method="post">
+            <div class="form-group">
+                <span asp-validation-for="Amount"></span>
+                <p asp-for="Amount">Deposit/Withdraw: <input asp-for="Amount" class="form-control" style="width: 80px"></p>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-dark">Submit</button>
+            </div>
+        </form>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Transaction t in @ViewBag.UserInfo.TransactionsOfUser)
+                {
+                    <tr>
+                        <td>@t.Amount</td>
+                        <td>@t.CreatedAt</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

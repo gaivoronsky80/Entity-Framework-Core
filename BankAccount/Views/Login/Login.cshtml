@@ -1,0 +1,23 @@
+@using BankAccount.Models
+@model LoginUser
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="wrapper">
+    <div class="title">
+        <h1>Login</h1>
+    </div>
+    <div class="context" style="width: 400px">
+        <form asp-action="Enter" asp-controller="Login" method="post">
+            <div class="context-left form-group">
+                <span asp-validation-for="Email"></span>
+                <p asp-for="Email">Email: <input asp-for="Email" class="form-control"></p>
+                <span asp-validation-for="Password"></span>
+                <p asp-for="Password">Password: <input asp-for="Password" class="form-control"></p>
+            </div>
+            <div class="context-bottom form-group">
+                <button type="submit" class="btn btn-outline-dark">Submit</button>
+                <a href="/register">Need to Register?</a>
+            </div>
+        </form>
+    </div>
+</div>

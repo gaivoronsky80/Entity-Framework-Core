@@ -1,0 +1,36 @@
+@using ProductsAndCategories.Models
+@model Product
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="wrapper" style="width: 400px">
+    <h1>Products | <a href="/categories">Categories</a></h1>
+    <div>
+        <h2>New Product</h2>
+        <form asp-action="NewProduct" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <span asp-validation-for="Name"></span>
+                <input asp-for="Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <span asp-validation-for="Description"></span>
+                <input asp-for="Description" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <span asp-validation-for="Price"></span>
+                <input asp-for="Price" class="form-control">
+            </div>
+            <button class="btn btn-success">Create</button>
+        </form>
+    </div>
+    <div>
+        <h2>Existing Products</h2>
+        @foreach (var product in ViewBag.allProducts)
+        {
+            <p><a href="products/@product.ProductId">@product.Name</a></p>
+        }
+    </div>
+</div>

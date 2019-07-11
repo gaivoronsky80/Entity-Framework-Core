@@ -1,0 +1,41 @@
+@using ChefsNDishes.Models
+@model Dish
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="wrapper">
+    <div class="title">
+        <h1>Add a Dish!</h1>
+        <a href="/">Home</a>
+    </div>
+    <div class="context" style="width: 400px">
+        <form asp-action="CreateDish" asp-controller="Home" method="post">
+            <div class="context-left form-group">
+                <span asp-validation-for="Name" class="form-text text-muted"></span>
+                <p>Name of Dish: <input asp-for="Name" class="form-control"></p>
+                <span asp-validation-for="Calories" class="form-text text-muted"></span>
+                <p># of Calories: <input asp-for="Calories" class="form-control"></p>
+                <span asp-validation-for="ChefId" class="form-text text-muted"></span>
+                <p>Chef: <select asp-for="ChefId" class="form-control">
+                    @foreach(var chef in ViewBag.AllChefs)
+                    {
+                    <option value="@chef.ChefId">@chef.FirstName @chef.LastName</option>
+                    }
+                </select></p>
+                <span asp-validation-for="Tastiness" class="form-text text-muted"></span>
+                <p>Tastiness: <select asp-for="Tastiness" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></p>
+                <span asp-validation-for="Description" class="form-text text-muted"></span>
+                <p>Description: <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+            <div class="context-bottom form-group">
+                <button type="submit" class="btn btn-outline-dark">Add Dish</button>
+            </div>
+        </form>
+    </div>
+</div>
+

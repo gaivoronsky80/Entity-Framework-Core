@@ -1,0 +1,75 @@
+@using PartyFinder.Models
+@model Party
+
+<link href="/css/site.css"/>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<nav>
+    <div><a href="/">Home</a></div>
+</nav>
+<h1 class="text-left">Create the Party!</h1>
+<div class="wrapper-form">
+    <form asp-action="Add" asp-controller="Home" method="post">
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input class="form-control" asp-for="Title" id="Title">
+            <span class="text-red" asp-validation-for="Title" ></span>
+        </div>
+        <div class="form-group">
+            <label for="Genre">Genre</label>
+            <select class="form-control" asp-for="Genre" id="Genre">
+                <option value="The Drink Wine and Talk Forever About Deep Topics Party">The Drink Wine and Talk Forever About Deep Topics Party</option>
+                <option value="The Viewing Party">The Viewing Party</option>
+                <option value="The Bachelor Party">The Bachelor Party</option>
+                <option value="The Bachelorette Party">The Bachelorette Party</option>
+                <option value="The Dance Party">The Dance Party</option>
+                <option value="The Kid's Birthday Party">The Kid's Birthday Party</option>
+                <option value="The Adult Birthday Party">The Adult Birthday Party</option>
+                <option value="The Game Night Party">The Game Night Party</option>
+                <option value="The Costume Party">The Costume Party</option>
+                <option value="The Frat Party">The Frat Party</option>
+                <option value="The Awkward Dinner Party">The Awkward Dinner Party</option>
+                <option value="The Pizza Party">The Pizza Party</option>
+                <option value="The Slumber Party">The Slumber Party</option>
+                <option value="The Sausage Party">The Sausage Party</option>
+                <option value="The Festival Party">The Festival Party</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Img">Image URL</label>
+            <input class="form-control" asp-for="Img">
+            <span class="text-red" asp-validation-for="Img"></span>
+        </div>
+        <div class="form-group">
+            <label for="Date">Date</label>
+            <input class="form-control" asp-for="Date">
+            <span class="text-red" asp-validation-for="Date"></span>
+        </div>
+        <div class="form-group">
+            <label for="Time">Time</label>
+            <input class="form-control" asp-for="Time">
+            <span class="text-red" asp-validation-for="Time"></span>
+        </div>
+        <div class="form-group">
+            <label for="Duration">Duration</label>
+            <input class="form-control" asp-for="Duration">
+            <select class="form-control" asp-for="DurationType">
+                <option value="Hours">Hours</option>
+                <option value="Minutes">Minutes</option>
+                <option value="Days">Days</option>
+            </select>
+            <span class="text-red" asp-validation-for="Duration"></span>
+        </div>
+        <div class="form-group">
+            <label for="Location">Location</label>
+            <input class="form-control" asp-for="Location">
+            <span class="text-red" asp-validation-for="Location"></span>
+        </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea class="form-control" asp-for="Description"></textarea>
+            <span class="text-red" asp-validation-for="Description"></span>
+        </div>
+        <button type="submit" class="btn btn-outline-dark signin">Add New</button>
+    </form>
+</div>

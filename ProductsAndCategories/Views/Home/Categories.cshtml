@@ -1,0 +1,26 @@
+@using ProductsAndCategories.Models
+@model Category
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="wrapper" style="width: 400px">
+<h1><a href="/products">Products</a> | Categories</h1>
+    <div>
+        <h2>New Category</h2>
+        <form asp-action="NewCategory" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <span asp-validation-for="Name"></span>
+                <input asp-for="Name" class="form-control">
+            </div>
+            <button class="btn btn-success">Create</button>
+        </form>
+    </div>
+    <div>
+        <h2>Existing Categories</h2>
+        @foreach (Category i in @ViewBag.allCategories)
+        {
+            <p><a href="categories/@i.CategoryId">@i.Name</a></p>
+        }
+    </div>
+</div>

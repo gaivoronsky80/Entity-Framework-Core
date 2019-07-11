@@ -1,0 +1,26 @@
+@using BrightIdeas.Models
+@model FormContent
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<nav>
+    <div><a href="/bright_ideas">Bright Ideas</a></div>
+    <div><a href="/logout">Logout</a></div>
+</nav>
+
+<div>
+    <hr>
+        <p><a asp-action="Info" asp-controller="Home" asp-route-uId="@ViewBag.ThisMessage.User.Id">@ViewBag.ThisMessage.User.Alias </a> says:</p>
+        <p>@ViewBag.ThisMessage.Content</p>
+    
+        <div class="Message">
+            <h2>People who liked this post:</h2>
+        </div>
+    
+    @foreach(Like l in @ViewBag.ThisMessage.MessageLikes)
+    {
+        <p>Alias: <a asp-action="Info" asp-controller="Home" asp-route-uId="@l.User.Id">@l.User.Alias</a></p>
+        <p>Name: @l.User.Name</p>
+        <hr>
+    }
+</div>

@@ -1,0 +1,46 @@
+@using EventPlanner.Models
+@model Event
+
+<nav>
+    <div><a href="/">Home</a></div>
+    <div><a href="/logout">Logout</a></div>
+</nav>
+
+<h2>@ViewBag.ThisEvent.Title</h2>
+<p>Date & Time: @ViewBag.ThisEvent.Date.ToString("d") @ViewBag.ThisEvent.Time</p>
+
+<p>Event Coordinator: @ViewBag.ThisEvent.Creator.FirstName @ViewBag.ThisEvent.Creator.LastName</p>
+<p>Description: @ViewBag.ThisEvent.Description</p>
+
+<p>Joins:</p>
+<ul>
+    @foreach(Join i in @ViewBag.ThisEvent.Joins)
+    {
+        <li>@i.User.FirstName @i.User.LastName</li>
+    }
+</ul>
+
+@{
+    bool isTrue = false;
+    @foreach(var k in @ViewBag.ThisEvent.Joins)
+    {
+        if(k.UserId == @ViewBag.ThisUser.UserId)
+        {
+            isTrue = true;
+        }
+    }
+    if (isTrue)
+    {
+        <button><a asp-action="UnJoin" asp-controller="Home" asp-route-eventId="@ViewBag.ThisEvent.EventId">UnJoin</a></button>  
+    }
+    else {
+        if (@ViewBag.ThisEvent.UserId ==  @ViewBag.ThisUser.UserId)
+        {
+            <a asp-action="Delete" asp-controller="Home" asp-route-eventId="@ViewBag.ThisEvent.EventId">Cancel</a>
+        } 
+        else {
+            <button><a asp-action="Join" asp-controller="Home" asp-route-eventId="@ViewBag.ThisEvent.EventId">Join</a></button>
+            
+        }
+    }
+}
